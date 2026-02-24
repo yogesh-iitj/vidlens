@@ -1,0 +1,55 @@
+# ============================================================
+# VidLens — Custom Dataset Configuration (YOLO format)
+# For use with: vidlens train objects --data this_file.yaml
+# ============================================================
+
+# Root path to your dataset (relative or absolute)
+path: data/my_custom_dataset
+
+# Subdirectories for images (labels auto-detected from labels/ folder)
+train: images/train    # training images
+val:   images/val      # validation images
+test:  images/test     # (optional) test images
+
+# ============================================================
+# YOUR CUSTOM CLASSES
+# Replace these with your own class names.
+# Class indices start at 0.
+# ============================================================
+names:
+  0: person
+  1: car
+  2: bicycle
+  # Add as many classes as you need...
+
+# ============================================================
+# FOLDER STRUCTURE EXPECTED
+# ============================================================
+# data/my_custom_dataset/
+# ├── images/
+# │   ├── train/
+# │   │   ├── frame_001.jpg
+# │   │   └── ...
+# │   ├── val/
+# │   │   └── ...
+# │   └── test/          (optional)
+# └── labels/
+#     ├── train/
+#     │   ├── frame_001.txt   ← one .txt per image
+#     │   └── ...
+#     └── val/
+#         └── ...
+#
+# LABEL FILE FORMAT (YOLO .txt):
+#   <class_id> <cx> <cy> <w> <h>   ← all normalized 0–1
+#   Example: "0 0.5 0.4 0.2 0.3"  → class 0, centered at 50%,40%, 20%w, 30%h
+# ============================================================
+
+# ============================================================
+# TIPS
+# ============================================================
+# - Use tools like LabelImg or Roboflow to annotate images
+# - Aim for at least 100 images per class for fine-tuning
+# - 80/20 train/val split is standard
+# - Export from Roboflow as "YOLOv8" format → drop in here directly
+# ============================================================

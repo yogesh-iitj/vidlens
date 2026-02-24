@@ -1,0 +1,85 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "vidlens"
+version = "0.1.0"
+description = "Open-source video intelligence toolkit powered by deep learning"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.9"
+keywords = ["computer-vision", "deep-learning", "video-analysis", "yolo", "clip", "object-detection"]
+
+authors = [
+  { name = "VidLens Contributors" }
+]
+
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+  "Topic :: Multimedia :: Video",
+]
+
+# Core dependencies (minimal install)
+dependencies = [
+  "opencv-python>=4.8",
+  "numpy>=1.24",
+  "typer>=0.9",
+  "rich>=13.0",
+  "Pillow>=10.0",
+  "torch>=2.0",
+  "torchvision>=0.15",
+]
+
+[project.optional-dependencies]
+
+# Object detection, face detection, pose estimation
+yolo = [
+  "ultralytics>=8.0",
+]
+
+# Scene classification & highlight generation
+clip = [
+  "openai-clip @ git+https://github.com/openai/CLIP.git",
+  "ftfy",
+  "regex",
+]
+
+# Web UI
+ui = [
+  "gradio>=4.0",
+]
+
+# Training utilities
+train = [
+  "pandas>=2.0",
+  "matplotlib>=3.7",
+  "tensorboard>=2.13",
+  "albumentations>=1.3",
+]
+
+# Install everything
+all = [
+  "vidlens[yolo,clip,ui,train]",
+]
+
+[project.scripts]
+vidlens = "vidlens.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/your-org/vidlens"
+Documentation = "https://github.com/your-org/vidlens/blob/main/docs/"
+Repository = "https://github.com/your-org/vidlens"
+Issues = "https://github.com/your-org/vidlens/issues"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["vidlens*"]
